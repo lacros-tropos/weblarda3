@@ -1,0 +1,125 @@
+@import './antd.min.css';
+@font-face {
+  font-family: 'anticon';
+  src: url('../icon/iconfont.eot'); /* IE9*/
+  src: url('../icon/iconfont.woff') format('woff'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('../icon/iconfont.ttf') format('truetype'), /* iOS 4.1- */
+  url('../icon/iconfont.svg#iconfont') format('svg');
+}
+
+h1 {
+    font: 20px sans-serif;
+    font-weight: 700;
+    margin: 10px;
+}
+
+div#contents {
+    margin: 10px;
+    width: 100%;
+}
+
+div#menu {
+    float: left;
+    width: 250px;
+}
+div#right {
+    float: left;
+    width: 800px;
+}
+
+div#editor {
+    margin-bottom: 10px;
+}
+
+div.info-area {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    min-height: 100px;
+}
+
+table#editorleft th {
+    padding: 5px;
+    font-size: 13px;
+}
+table#editorleft td {
+    padding: 5px;
+}
+
+div.info-area th {
+    font-size: 12px;
+    padding:0 10px 0 10px;
+}
+div.info-area td {
+    font-size: 12px;
+    padding:0 10px 0 10px;
+}
+
+.ant-tree li {
+    padding: 0px;
+}
+
+.month-line {
+    fill: none;
+    stroke: black;
+    stroke-width: 2px;
+  }
+
+#tree-tooltip {
+    position: absolute;
+    text-align: center;
+    font: 11px sans-serif;
+    /*background: lightgrey;*/
+    background: rgba(209, 209, 209, 0.93);
+    padding: 2px;
+    z-index: 2;
+    border: 0px;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+#tree-tooltip td.left {
+    text-align: left;
+}
+
+#tree-tooltip td.right {
+    text-align: right;
+}
+
+span.clickable {
+    cursor: pointer;
+    font-size: 12px;
+    padding: 2px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+span.clickable:hover {
+    color: blue;
+    background: lightgrey;
+}
+
+span.permalink {
+    font-size: 11px;
+}
+
+p.er {
+    display: inline-block;
+    padding: 3px;
+    margin: 5px;
+    border-style: solid;
+    border-color: darkgrey;
+    border-width: 0.5px;
+    color: red;
+}
+
+
+.colorplot canvas {
+    position: absolute
+}
+
+.colorplot-svg {
+    position: relative;
+}
+
+div.colorplot {
+    float: left;
+}
