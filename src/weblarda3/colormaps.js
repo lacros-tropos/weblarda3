@@ -23,6 +23,18 @@ var colormaps = {
   //category10: function () { return category10 },
 };
 
+var thresholds = {
+  get: function (name) {
+    if (name === "cloudnet_target") {
+      return [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5];
+    } else if (name === "pollynet_class") {
+      return [0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5, 10.5];
+    } else {
+      return [];
+    }
+  }
+}
+
 var carbonne = [
   '#00004d', '#070e3b', '#0a0e40', '#0d0e44', '#100e49', '#120e4c', '#150e50',
   '#170e55', '#190e59', '#1c0e5d', '#1f0e62', '#220e66', '#240e6a', '#270e6e',
@@ -367,7 +379,7 @@ var cloudnet_target = [
  "rgb(0, 153, 153)",
  "rgb(204, 204, 204)",
  "rgb(153, 153, 153)",
- "rgb(102, 102, 102)"
+ "rgb(102, 102, 102)",
 ]
 
 var pollynet_class = [
@@ -382,4 +394,5 @@ var pollynet_class = [
  "rgb(58, 138, 201)",
  "rgb(180, 222, 247)",
  "rgb(17, 120, 51)",
- "rgb(134, 186, 107)"]
+ "rgb(134, 186, 107)",
+]

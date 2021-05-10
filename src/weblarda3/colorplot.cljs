@@ -153,10 +153,11 @@
         plotProps @colorplotProps-cursor
         data-container (get-in @data-containers-cursor [which])
         colormap (get data-container "colormap")
+        thres (js/thresholds.get colormap)
         color (cmap/make-colormap (js-invoke js/colormaps (if (.includes (js/colormaps.available) colormap) colormap "rainbow"))
                                   :scale (get data-container "plot_varconverter")
                                   :rg (h/clj->js (get data-container "var_lims"))
-                                  :thres [])
+                                  :thres thres)
         context (-> (js/d3.select (str "#cp-" id " canvas")) (.node) (.getContext "2d"))
         px-ts-mapping (pixel-time-map (get-in plotProps [:imageSize :w]) (get data-container "ts"))
         calc-rel-coords (setup-rel-coords plotProps)]

@@ -41,6 +41,7 @@
 
 ; dev or hard coded
 ;(defonce host "http://larda.tropos.de/larda3/")
+;(defonce host "http://larda3.tropos.de/")
 ;get from index.html <script> tag
 ;(defonce host js/hostaddr)
 (defonce host (second (re-find #"(.+)explorer" js/hostaddr)))
@@ -213,11 +214,12 @@
 
 
 ; extract from query string
-(defn extract-from-adress [adress]
- (let [href (.. adress -href)
+(defn extract-from-address [address]
+ (let [href (.. address -href)
        ;href "http://larda.tropos.de/larda3/explorer/lacros_dacapo/"
+       ;href "http://larda3.tropos.de/explorer/lacros_cycare/"
        c-name (last (string/split (first (string/split href #"\?")) #"/"))
-       query-string (.. adress -search)
+       query-string (.. address -search)
        ;query-string "?rformat=json&interval=1549238460.0-1549396800.0%2C0-8000&params=CLOUDNET_LIMRAD|VEL"
        ;query-string "?rformat=json&interval=1549385800.0-1549396800.0%2C0-8000&params=CLOUDNET_LIMRAD|VEL,CLOUDNET|CLASS"
        ;                                    19951231_235959
@@ -227,7 +229,7 @@
        sel-time-range (interval-to-dict interval)
        params (hex-comma-and-split (second (re-find #"params=([^&]*)" query-string)))]
    ;define default values for interval
-   (println "extract from adress" href query-string)
+   (println "extract from address" href query-string)
    (println (string/split (first (string/split href #"\?")) #"/") "=> " c-name)
    (println "interval" interval (count interval) sel-time-range) (println "params" params)
 
@@ -240,7 +242,7 @@
 
 ;query-string (second (re-find #"camp=([^&]*)" (.. js/window -location -search)))
 
-(extract-from-adress (.. js/window -location))
+(extract-from-address (.. js/window -location))
 
 ; get the paramaeter list...
 (defn fetch-c-info [c-name & [additional-atom]]

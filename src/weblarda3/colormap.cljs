@@ -85,29 +85,31 @@
 
 (defn evenly-spaced-indices ;get a number of evenly spaced indices from a range of length
   [no length]
+  (println "evenly spaced indices" no length)
   (let [dx (/ (dec length) (dec no))]
     (mapv #(js/Math.round (* dx %)) (vec (range no)))))
 
 (defn make-colormap [colors_cmap & & {:keys [:rg :thres :scale] :or {:rg [-40 5] :thres [] :scale ""}}]
-  ;(println "scale at make-colormap" scale rg (mapv js/Math.log10 rg))
+  (println "scale at make-colormap:  " scale rg (mapv js/Math.log10 rg) thres)
   (let [rg-scale (case scale
                    "log" (mapv js/Math.log10 rg)
                    rg)
-        indices-cmap (js/custom.range 0 (alength colors_cmap))
+        indices-cmap (js/custom.range 0 (+ (alength colors_cmap) 1))
         ;cmap-steps (map (-> (js/d3.scaleLinear)
         ;             (.domain (array 0 (alength colors_cmap)))
         ;             (.range (clj->js rg-scale)))
         ;             (range (alength colors_cmap)))
         cmap-steps (.map indices-cmap (-> (js/d3.scaleLinear)
-                                       (.domain (array 0 (alength colors_cmap)))
+                                       (.domain (array 0 (alength colors_cmap) ))
                                        (.range (clj->js rg-scale))))
         colors-thres (if (empty? thres)
                        colors_cmap
                        (.map cmap-steps (-> (js/d3.scaleThreshold)
                                          (.domain (clj->js thres))
                                          (.range (clj->js (vals (select-keys colors_cmap (evenly-spaced-indices (inc (count thres)) (alength colors_cmap)))))))))]   
-                            
-    ;(println rg-scale cmap-steps)
+    ;(println "colors " colors_cmap (alength colors_cmap))
+    ;(println rg-scale "cmap-steps" cmap-steps)
+    ;(println "indices cmap" indices-cmap)
     (-> (js/d3.scaleLinear)
         (.domain cmap-steps)
         (.range colors-thres))))

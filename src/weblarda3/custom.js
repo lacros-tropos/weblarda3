@@ -141,14 +141,21 @@ var custom = {
             return s.slice(4,-1).split(",").map(Number)
         }
 
+        let expected_dt = 0
+        for (let ix = 0; ix < 60; ix++) {
+            let dt = data2d.ts[ix+1] - data2d.ts[ix]
+            if (dt > expected_dt) {
+                expected_dt = dt
+            }
+        }
         let jumps = []
         for (let ix = 0; ix < data2d.ts.length; ix++) {
-            if (data2d.ts[ix+1] - data2d.ts[ix] > 60) {
+            if (data2d.ts[ix+1] - data2d.ts[ix] > (1.5*expected_dt)) {
                 jumps.push(ix)
                 jumps.push(ix+1)
             }
         }
-        console.log("jumps larger 60sec ", jumps)
+        console.log("jumps larger ", expected_dt, " sec ", jumps)
 
         values_arr = color.domain()
         color_arr = color.domain().map(color).map(torgb)
